@@ -6,7 +6,6 @@ host = '172.25.208.1'
 port = 50000
 
 serverSocket.bind((host, port))
-print("yo")
 
 while True:
     serverSocket.listen(4)
