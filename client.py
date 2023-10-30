@@ -2,7 +2,7 @@ import socket
 
 def main():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect(('172.25.208.1', 12345))
+    client.connect(('172.25.208.1', 80))
     print("1: Number of CS credits in 4 year BSc Hons in CS. ")
     print("2: Breakdown of CS credits. ")
     print("3: List of Core CS courses. ")

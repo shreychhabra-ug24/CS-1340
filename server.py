@@ -40,11 +40,13 @@ def handle_client(client_socket):
         else:
             client_socket.send("Invalid option. Please try again.".encode())
 
+#main function with driver code to connect to client side
+
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind(('172.25.208.1', 12345))
+    server.bind(('172.25.208.1', 80))
     server.listen(5)
-    print("Server listening on port 12345")
+    print("Waiting for connection...")
 
     while True:
         client_socket, addr = server.accept()
