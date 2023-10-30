@@ -1,22 +1,30 @@
 import socket
 
+def main():
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect(('172.25.208.1', 12345))
+    print("1: Number of CS credits in 4 year BSc Hons in CS. ")
+    print("2: Breakdown of CS credits. ")
+    print("3: List of Core CS courses. ")
+    print("4: List of Core CS Courses with their Prequisites. ")
+    print("5: List of Core CS courses and what semester they're offered in. ")
+    print("6: List of CS electives. ")
 
-clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serverHost = "172.25.208.1"
-serverPort = 50000
+    while True:
+        print("Choose an option (1-10) or enter 11 to quit:")
+        option = input("> ")
+        if option not in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']:
+            print("Invalid input. Please try again.")
+            continue
 
-clientSocket.connect((serverHost,serverPort))
+        client.send(option.encode())
+        response = client.recv(1024).decode()
+        print(response)
 
-x = int(input("Enter an integer: "))
+        if option == '11':
+            break
 
-clientSocket.send(str(x).encode('utf-8'))
+    client.close()
 
-result = clientSocket.recv(1024).decode('utf-8')
-
-
-response_message, result = result.split(':', 1)
-
-print(f"Server Response: {response_message}")
-print(f"Result: {result}")
-
-clientSocket.close()
+if __name__ == "__main__":
+    main()
