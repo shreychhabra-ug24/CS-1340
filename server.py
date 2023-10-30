@@ -7,38 +7,42 @@ cs_courses = {"Probability and Statistics (PnS)": {"prerequisite": "Math in Grad
             "Computer Organisation and Systems(COS)": {"prerequisite": "ICS", "semester": "Spring"}, "Design Practices in CS": {"prerequisite": "DSA, COS", "semester": "Monsoon"}, "Computer Networks": {"prerequisite": "ICS, DSA", "semester": "Monsoon"}, "Embedded Systems": {"prerequisite": "COS", "semester": "Spring"},
             "Capstone Project": {"prerequisite": "", "semester": "Monsoon"}}
 
-def handle_client(client_socket):
+def handle_client(clientsocket):
     while True:
-        option = client_socket.recv(1024).decode()
+        option = clientsocket.recv(1024).decode()
         
         if option == '1':
-            client_socket.send("Minimum of 86 CS credits in 4 year BSc Hons in CS. ".encode())
+            response = "Minimum of 86 CS credits in 4 year BSc Hons in CS. "
         elif option == '2':
-            client_socket.send("76 credits from CS core. 12 credits from CS electives.".encode())
+            response = "76 credits from CS core. 12 credits from CS electives."
         elif option == '3':
             course_names = "\n".join(cs_courses.keys())
-            client_socket.send(course_names.encode())
+            response = course_names
         elif option == '4':
             course_info = "\n".join([f"{course}: Prerequisite - {cs_courses[course]['prerequisite']}" for course in cs_courses])
-            client_socket.send(course_info.encode())
+            response = course_info
         elif option == '5':
             course_info = "\n".join([f"{course}: {cs_courses[course]['semester']}" for course in cs_courses])
-            client_socket.send(course_info.encode())
+            response = course_info
         elif option == '6':
-            client_socket.send("Minimum 6 non academic ccredits: 4 for co-curricular courses and 2 for internship experience. ".encode())
+            response = "Minimum 6 non academic ccredits: 4 for co-curricular courses and 2 for internship experience. "
         elif option == '7':
-            client_socket.send("A total of 36 credits for foundation courses. ".encode())
+            response = "A total of 36 credits for foundation courses. "
         elif option == '8':
-            client_socket.send("Minimum of 150 credits for degree completion, where 144 are academic credits including 86 for CS, 36 for FC, 22 open credits (any course), and 6 non-academic credits. ".encode())
+            response = "Minimum of 150 credits for degree completion, where 144 are academic credits including 86 for CS, 36 for FC, 22 open credits (any course), and 6 non-academic credits. "
         elif option == '9':
-            client_socket.send("The Physics and Biology course offering is yet to be decided, but may be taken any time in the 4 year degree. Alongside electives, they are not mentioned in the Core Course list and must be taken when required. ".encode())
+            response = "The Physics and Biology course offering is yet to be decided, but may be taken any time in the 4 year degree. Alongside electives, they are not mentioned in the Core Course list and must be taken when required. "
         elif option == '10':
-            client_socket.send("Minimum grade of B in Introduction to Computer Science and Discrete Math. To take ICS and Discrete Math, minimum grade of B in QRMT+Calculus if math not taken in grades XI and XII. ".encode())
+            response = "Minimum grade of B in Introduction to Computer Science and Discrete Math. To take ICS and Discrete Math, minimum grade of B in QRMT+Calculus if math not taken in grades XI and XII. "
         elif option == '11':
-            client_socket.send("Goodbye! ".encode())
+            response = "Goodbye! "
+            clientsocket.send(response.encode())
+            # close the connection with the client
+            clientsocket.close()
             break
-        elif not response:
-            client_socket.send("Invalid option. Please try again.".encode())
+        clientsocket.send(response.encode())
+        if not response:
+            response = "Invalid option. Please try again."
 
 #main function with driver code to connect to client side
 
@@ -49,9 +53,9 @@ def main():
     print("Waiting for connection...")
     #ensures that the connection is persistent and handles repeated requests from the client
     while True:
-        client_socket, addr = server.accept()
+        clientsocket, addr = server.accept()
         print(f"Accepted connection from {addr}")
-        handle_client(client_socket)
+        handle_client(clientsocket)
 
 if __name__ == "__main__":
     main()

@@ -1,5 +1,4 @@
 import socket
-
 def main():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(('172.25.208.1', 80))
@@ -27,8 +26,8 @@ def main():
         print(response)
 
         if option == '11':
+            client.send(option.encode())
             break
-
     client.close()
 
 if __name__ == "__main__":
