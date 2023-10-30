@@ -8,12 +8,17 @@ def main():
     print("3: List of Core CS courses. ")
     print("4: List of Core CS Courses with their Prequisites. ")
     print("5: List of Core CS courses and what semester they're offered in. ")
-    print("6: List of CS electives. ")
+    print("6: Non Academic Credits. ")
+    print("7: Foundation Course Credits. ")
+    print("8: Total Credits for degree and remaining credits. ")
+    print("9: Physics and Biology Courses, and Electives. ")
+    print("10: Minimum Grade Requirements. ")
 
     while True:
         print("Choose an option (1-10) or enter 11 to quit:")
         option = input("> ")
-        if option not in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']:
+        if option not in [str(i) for i in range(1, 12)]:
+        #if option not in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']:
             print("Invalid input. Please try again.")
             continue
 
