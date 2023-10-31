@@ -22,7 +22,7 @@ def main():
             continue
 
         client.send(option.encode())
-        response = client.recv(1024).decode()
+        response = client.recv(3068).decode()
         print(response)
 
         if option == '11':
