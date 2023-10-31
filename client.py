@@ -17,7 +17,6 @@ def main():
         print("Choose an option (1-10) or enter 11 to quit:")
         option = input("> ")
         if option not in [str(i) for i in range(1, 12)]:
-        #if option not in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']:
             print("Invalid input. Please try again.")
             continue
 
