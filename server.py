@@ -16,7 +16,7 @@ def handle_client(clientsocket):
         elif option == '2':
             response = "76 credits from CS core. 12 credits from CS electives."
         elif option == '3':
-            course_names = "\n".join(cs_courses.keys())
+            course_names = "\n".join(cs_courses.keys()) #joins the keys of the dictionary with a newline character to return as string
             response = course_names
         elif option == '4':
             course_info = "\n".join([f"{course}: Prerequisite - {cs_courses[course]['prerequisite']}" for course in cs_courses])
