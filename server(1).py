@@ -14,7 +14,7 @@ def handle_client(clientsocket):
         if option == '1':
             response = "Minimum of 86 CS credits in 4 year BSc Hons in CS. "
         elif option == '2':
-            response = "76 credits from CS core. 12 credits from CS electives."
+            response = "74 credits from CS core. 12 credits from CS electives."
         elif option == '3':
             course_names = "\n".join(cs_courses.keys()) #joins the keys of the dictionary with a newline character to return as string
             response = course_names
