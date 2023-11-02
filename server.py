@@ -48,7 +48,7 @@ def handle_client(clientsocket):
 
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind(('172.25.208.1', 80))
+    server.bind(('127.0.0.1', 8000))
     server.listen(5)
     print("Waiting for connection...")
     #ensures that the connection is persistent and handles repeated requests from the client
